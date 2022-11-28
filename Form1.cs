@@ -8,115 +8,132 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Froms
 {
     public partial class Form1 : Form
     {
-        sbyte countYes = 0;
-        sbyte countNo = 0;
+        // iteratory zliczające odpowiedzi w formularzu
+        private sbyte countYes = 0;
+        private sbyte countNo = 0;
+
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void checkBox1_Click(object sender, EventArgs e)
+        private void validation(int x)
         {
-            if (checkBox1.Checked == true)
+            CheckBox[] all = new CheckBox[10]
             {
-                checkBox2.Checked = false;
-                countYes++;
-            } else countYes--;
+                checkBox1, // 0
+                checkBox2, // 1
+                checkBox3, // 2
+                checkBox4, // 3
+                checkBox5, // 4
+                checkBox6,
+                checkBox7,
+                checkBox8,
+                checkBox9,
+                checkBox10,
+            };
+
+            // jeżeli parametr jest równy 0 lub jest liczbą nieparzystą to
+            if (x % 2 != 1 || x == 0)
+            {
+                // sprawdza czy jego element w tablicy jest zaznaczony i jeżeli tak to
+                if (all[x].Checked == true)
+                {
+                    // nadaje kolejnemu elemntowi tablicy właściwość false
+                    // (służy odznaczeniu drugiego elementu jeżeli jesten jest już zaznaczony) 
+                    all[x + 1].Checked = false;
+                    // jeżeli element z naszym parametrem jest true to dodaje 1 do interator countYes
+                    countYes++;
+                }
+                // jeżeli nie to odbiera naszemu iteratorowi 1
+                else countYes--;
+            } 
+            // jeżeli parametr jest parzysty to
+            else
+            {
+                // sprawdza czy jego element w tablicy jest zaznaczony i jeżeli tak to
+                if (all[x].Checked == true)
+                {
+                    // nadaje WCZEŚNIEJSZEMU elemntowi tablicy właściwość false
+                    all[x - 1].Checked = false;
+                    countNo++;
+                }
+                else countNo--;
+            }
+        }
+
+        private void checkBox1_Click(object sender, EventArgs e)
+        { 
+            // paremetr metody odpowiada indexowi tablicy checkboxów
+            validation(0);
         }
 
         private void checkBox2_Click(object sender, EventArgs e)
         {
-            if (checkBox2.Checked == true)
-            {
-                checkBox1.Checked = false;
-                countNo++;
-            } else countNo--;
+            validation(1);
         }
 
         private void checkBox3_Click(object sender, EventArgs e)
         {
-            if (checkBox3.Checked == true)
-            {
-                checkBox4.Checked = false;
-                countYes++;
-            }
-            else countYes--;
+            validation(2);
         }
 
         private void checkBox4_Click(object sender, EventArgs e)
         {
-            if (checkBox4.Checked == true)
-            {
-                checkBox3.Checked = false;
-                countNo++;
-            } else countNo--;
+            validation(3);
         }
 
         private void checkBox5_Click(object sender, EventArgs e)
         {
-            if (checkBox5.Checked == true)
-            {
-                checkBox6.Checked = false;
-                countYes++;
-            } else countYes--;
+            validation(4);
         }
 
         private void checkBox6_Click(object sender, EventArgs e)
         {
-            if (checkBox6.Checked == true)
-            {
-                checkBox5.Checked = false;
-                countNo++;
-            } else countNo--;
+            validation(5);
         }
 
         private void checkBox7_Click(object sender, EventArgs e)
         {
-            if (checkBox7.Checked == true)
-            {
-                checkBox8.Checked = false;
-                countYes++;
-            } else countYes--;
+            validation(6);
         }
 
         private void checkBox8_Click(object sender, EventArgs e)
         {
-            if (checkBox8.Checked == true)
-            {
-                checkBox7.Checked = false;
-                countNo++;
-            } else countNo--;
+            validation(7);
         }
 
         private void checkBox9_Click(object sender, EventArgs e)
         {
-            if (checkBox9.Checked == true)
-            {
-                checkBox10.Checked = false;
-                countYes++;
-            }
-            else countYes--;
+            validation(8);
         }
 
         private void checkBox10_Click(object sender, EventArgs e)
         {
-            if (checkBox10.Checked == true)
-            {
-                checkBox9.Checked = false;
-                countNo++;
-            }
-            else countNo--;
+            validation(9);
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Count Yes: " + countYes + "\n" + "Count No: " +countNo);
+
+            if (countYes + countNo < 5)
+            {
+                MessageBox.Show("Ankieta niewypełniona kompletnie!");
+                MessageBoxButtons.YesNo.Equals(0);
+            } else
+            { 
+                MessageBox.Show("Count Yes: " + countYes + "\n" + "Count No: " + countNo);
+            }
+
         }
     }
 }
