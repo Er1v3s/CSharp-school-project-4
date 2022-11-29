@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace Froms
 {
     public partial class Form1 : Form
     {
         // iteratory zliczające odpowiedzi w formularzu
-        private sbyte countYes = 0;
-        private sbyte countNo = 0;
+        private int countYes = 0;
+        private int countNo = 0;
 
 
         public Form1()
@@ -54,7 +45,7 @@ namespace Froms
                 }
                 // jeżeli nie to odbiera naszemu iteratorowi 1
                 else countYes--;
-            } 
+            }
             // jeżeli parametr jest parzysty to
             else
             {
@@ -70,7 +61,7 @@ namespace Froms
         }
 
         private void checkBox1_Click(object sender, EventArgs e)
-        { 
+        {
             // paremetr metody odpowiada indexowi tablicy checkboxów
             validation(0);
         }
@@ -128,10 +119,32 @@ namespace Froms
             if (countYes + countNo < 5)
             {
                 MessageBox.Show("Ankieta niewypełniona kompletnie!");
-                MessageBoxButtons.YesNo.Equals(0);
-            } else
-            { 
-                MessageBox.Show("Count Yes: " + countYes + "\n" + "Count No: " + countNo);
+            }
+            else
+            {
+                //MessageBox.Show("Count Yes: " + countYes + "\n" + "Count No: " + countNo);
+                Form2 f2 = new Form2();
+
+                switch (countYes)
+                {
+                    case 5:
+                        f2.pictureBox1.Image = global::Froms.Properties.Resources.face_wink;
+                        break;
+                    case 4:
+                        f2.pictureBox1.Image = global::Froms.Properties.Resources.Face_smile;
+                        break;
+                    case 1:
+                        f2.pictureBox1.Image = global::Froms.Properties.Resources.face_sad;
+                        break;
+                    case 0:
+                        f2.pictureBox1.Image = global::Froms.Properties.Resources.face_sad_sweating;
+                        break;
+                    default:
+                        f2.pictureBox1.Image = global::Froms.Properties.Resources.face_plain;
+                        break;
+                }
+
+                f2.ShowDialog();
             }
 
         }
