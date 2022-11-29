@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace Froms
@@ -59,6 +61,7 @@ namespace Froms
                 else countNo--;
             }
         }
+
 
         private void checkBox1_Click(object sender, EventArgs e)
         {
@@ -129,18 +132,23 @@ namespace Froms
                 {
                     case 5:
                         f2.pictureBox1.Image = global::Froms.Properties.Resources.face_wink;
+                        f2.label1.Text = "Euforia";
                         break;
                     case 4:
                         f2.pictureBox1.Image = global::Froms.Properties.Resources.Face_smile;
+                        f2.label1.Text = "Radość";
                         break;
                     case 1:
                         f2.pictureBox1.Image = global::Froms.Properties.Resources.face_sad;
+                        f2.label1.Text = "Smutek";
                         break;
                     case 0:
                         f2.pictureBox1.Image = global::Froms.Properties.Resources.face_sad_sweating;
+                        f2.label1.Text = "Rozpacz";
                         break;
                     default:
                         f2.pictureBox1.Image = global::Froms.Properties.Resources.face_plain;
+                        f2.label1.Text = "Neutralny";
                         break;
                 }
 
