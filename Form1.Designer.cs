@@ -191,7 +191,10 @@
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.ResumeLayout(false);
             this.PerformLayout();
 
