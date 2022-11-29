@@ -125,7 +125,6 @@ namespace Froms
             }
             else
             {
-                //MessageBox.Show("Count Yes: " + countYes + "\n" + "Count No: " + countNo);
                 Form2 f2 = new Form2();
 
                 switch (countYes)
